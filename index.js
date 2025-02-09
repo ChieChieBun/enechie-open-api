@@ -20,7 +20,6 @@ fetch(`https://api.artic.edu/api/v1/artworks`)
   addButton.innerHTML= `Add Image`;
   addButton.setAttribute("type", "button");
   buttonDiv.appendChild(addButton);
-  const controller = new AbortController();
 
   addButton.addEventListener(`click`, function() {
     //Creating an img element
@@ -38,15 +37,18 @@ fetch(`https://api.artic.edu/api/v1/artworks`)
   imgSection.appendChild(img);
   //how many img elements in document
   let imgCount = document.querySelectorAll(`img`);
+  let imgArray = [].slice.call(imgCount);
 
    // Removes img
    img.addEventListener(`click`, function(){
     img.remove();
+    imgArray.pop();
    })
-// if img element amount is 3 or more abort (button doesn't work )
-  console.log(imgCount);
-   if (imgCount.length >= 3) {
-    controller.abort();
-   }
-  },{ signal: controller.signal })
+   // if img element amount is 3 or more abort (button doesn't work )
+   if(imgArray.length === 3){
+    addButton.disabled = true;
+  }
+console.log(imgArray);
+  })
+
 })
