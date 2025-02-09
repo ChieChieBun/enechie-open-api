@@ -1,0 +1,16 @@
+h1{
+  text-align: center;
+}
+img{
+  max-height: 400px;
+  margin: auto;
+}
+
+div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button{
+ margin: 50px;
+}
