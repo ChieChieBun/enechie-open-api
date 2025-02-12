@@ -23,6 +23,8 @@ fetch(`https://api.artic.edu/api/v1/artworks`)
   addButton.setAttribute("type", "button");
   buttonDiv.appendChild(addButton);
 
+
+
   addButton.addEventListener(`click`, function() {
     //Creating an img element and div's
     const img = document.createElement(`img`);
@@ -33,7 +35,9 @@ fetch(`https://api.artic.edu/api/v1/artworks`)
     moreInfo.className =`text`;
     //Picking Random number 0-12
     const i = Math.floor(Math.random()*13);
+    console.log(i);
     //if it doesn't have image_id use alt image id
+
        if (art.data[i].image_id == null) {
         img.src = `https://www.artic.edu/iiif/2/${art.data[i].alt_image_ids[i]}/full/843,/0/default.jpg`
        }
@@ -53,7 +57,9 @@ fetch(`https://api.artic.edu/api/v1/artworks`)
    // Changes img when clicked on
    img.addEventListener(`click`, function(){
     //Picking Random number 0-12
-    const i = Math.floor(Math.random()*13);
+    const i = Math.floor(Math.random()*12);
+    console.log(i);
+
     //if it doesn't have image_id use alt image id
        if (art.data[i].image_id == null) {
         img.src = `https://www.artic.edu/iiif/2/${art.data[i].alt_image_ids[i]}/full/843,/0/default.jpg`
@@ -67,6 +73,8 @@ fetch(`https://api.artic.edu/api/v1/artworks`)
    if(imgArray.length === 3){
     addButton.style.display = `none`;
   }
-console.log(imgArray);
   })
 })
+.catch(error=>{
+  console.error(`An Error occurred:`, error);
+});
